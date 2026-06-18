@@ -1,0 +1,248 @@
+---
+const navLinks = [
+  { label: 'Layanan', href: '#services' },
+  { label: 'Pickup-Delivery', href: '#how-it-works' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Subscription', href: '#subscription' },
+  { label: 'B2B', href: '#b2b' },
+];
+---
+
+<header class="navbar" id="navbar">
+  <div class="container-fresh navbar-inner">
+    <!-- Logo -->
+    <a href="/" class="navbar-logo" aria-label="FreshFold Laundry">
+      <div class="logo-mark">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="14" fill="#ff385c"/>
+          <path d="M8 14C8 14 10 10 14 10C18 10 20 14 20 14C20 14 18 18 14 18C10 18 8 14 8 14Z" fill="white" opacity="0.3"/>
+          <circle cx="14" cy="14" r="3" fill="white"/>
+        </svg>
+      </div>
+      <span class="logo-text">FreshFold</span>
+    </a>
+
+    <!-- Nav Links (desktop) -->
+    <nav class="navbar-links" aria-label="Main navigation">
+      {navLinks.map(link => (
+        <a href={link.href} class="nav-link">{link.label}</a>
+      ))}
+    </nav>
+
+    <!-- CTA -->
+    <div class="navbar-actions">
+      <a href="#booking" class="btn-primary navbar-cta">
+        Pickup Sekarang
+      </a>
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-nav">
+      {navLinks.map(link => (
+        <a href={link.href} class="mobile-nav-link">{link.label}</a>
+      ))}
+      <a href="#booking" class="btn-primary" style="width:100%;justify-content:center;margin-top:8px;">
+        Pickup Sekarang
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border-soft);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .navbar.scrolled {
+    box-shadow: var(--shadow-card);
+  }
+
+  .navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    gap: 32px;
+  }
+
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--color-ink);
+    letter-spacing: -0.03em;
+  }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-link {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-muted);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--color-ink);
+    background-color: var(--color-canvas-soft);
+  }
+
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .navbar-cta {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--color-ink);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    display: none;
+    padding: 12px 24px 20px;
+    border-top: 1px solid var(--color-border-soft);
+  }
+
+  .mobile-menu.open {
+    display: block;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mobile-nav-link {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-ink);
+    text-decoration: none;
+    padding: 12px 8px;
+    border-radius: 8px;
+    transition: background-color 0.15s ease;
+  }
+
+  .mobile-nav-link:hover {
+    background-color: var(--color-canvas-soft);
+  }
+
+  @media (max-width: 768px) {
+    .navbar-links {
+      display: none;
+    }
+    .navbar-cta {
+      display: none;
+    }
+    .hamburger {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  // Scroll effect
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navbar?.classList.add('scrolled');
+    } else {
+      navbar?.classList.remove('scrolled');
+    }
+  });
+
+  // Hamburger toggle
+  hamburger?.addEventListener('click', () => {
+    const isOpen = hamburger.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    mobileMenu?.classList.toggle('open');
+    mobileMenu?.setAttribute('aria-hidden', String(!isOpen));
+  });
+
+  // Close mobile menu on link click
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger?.classList.remove('open');
+      hamburger?.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    });
+  });
+</script>

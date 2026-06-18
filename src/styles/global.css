@@ -1,0 +1,485 @@
+@import "tailwindcss";
+
+/* =============================================
+   FRESHFOLD HYBRID DESIGN TOKENS
+   Airbnb (65%) + Stripe (20%) + Zapier (10%) + Cal.com (5%)
+   ============================================= */
+
+@theme {
+  /* === FONTS === */
+  --font-display: "Plus Jakarta Sans", "DM Sans", system-ui, sans-serif;
+  --font-body: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* === BRAND COLORS (Airbnb Rausch) === */
+  --color-primary: #ff385c;
+  --color-primary-dark: #e00b41;
+  --color-primary-muted: #ffd1da;
+
+  /* === STEP ACCENT (Zapier — How It Works only) === */
+  --color-step: #ff4f00;
+
+  /* === TRUST / STRIPE === */
+  --color-navy: #1c1e54;
+  --color-navy-mid: #0d253d;
+  --color-indigo: #533afd;
+  --color-indigo-soft: #b9b9f9;
+
+  /* === SURFACES === */
+  --color-canvas: #ffffff;
+  --color-canvas-warm: #fffefb;
+  --color-canvas-soft: #f7f7f7;
+  --color-canvas-card: #f5f5f5;
+  --color-canvas-cream: #f5e9d4;
+
+  /* === TEXT (Airbnb) === */
+  --color-ink: #222222;
+  --color-body-text: #3f3f3f;
+  --color-muted: #6a6a6a;
+  --color-muted-soft: #929292;
+
+  /* === BORDERS === */
+  --color-border: #dddddd;
+  --color-border-soft: #ebebeb;
+  --color-border-input: #e5e7eb;
+
+  /* === SEMANTIC === */
+  --color-success: #10b981;
+  --color-error: #c13515;
+  --color-warning: #f59e0b;
+
+  /* === SPACING === */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 96px;
+
+  /* === BORDER RADIUS === */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+
+  /* === SHADOWS === */
+  --shadow-card: rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px, rgba(0,0,0,0.10) 0 4px 8px;
+  --shadow-panel: rgba(0,55,112,0.08) 0 8px 24px, rgba(0,55,112,0.04) 0 2px 6px;
+  --shadow-form: rgba(0,0,0,0.06) 0 4px 16px;
+  --shadow-nav: rgba(0,0,0,0.06) 0 1px 0;
+}
+
+/* === BASE STYLES === */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+/* === UTILITY CLASSES === */
+.container-fresh {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.section-pad {
+  padding-block: 80px;
+}
+
+.section-pad-lg {
+  padding-block: 96px;
+}
+
+/* === BUTTON SYSTEM === */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 13px 27px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-ink);
+  background-color: var(--color-canvas-soft);
+  transform: translateY(-1px);
+}
+
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--color-navy);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-dark:hover {
+  background-color: #2a2d7a;
+  transform: translateY(-1px);
+}
+
+/* === CARD BASE === */
+.card-fresh {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card-fresh:hover {
+  box-shadow: var(--shadow-card);
+  transform: translateY(-4px);
+}
+
+/* === SECTION LABEL === */
+.section-eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+/* === GRADIENT BADGE (Stripe-inspired trust) === */
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--color-canvas-soft);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-body-text);
+}
+
+/* =============================================
+   RESPONSIVE LAYOUT UTILITIES
+   ============================================= */
+
+/* 2-column grid yang collapse jadi 1 kolom di mobile */
+.layout-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.layout-2col-start {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.layout-2col-coverage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Inner grid kecil (e.g., name + WA input) */
+.layout-2col-sm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Grid time slot 2 kolom */
+.layout-2col-slots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* Pricing table scroll on mobile */
+.pricing-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pricing-scroll > div {
+  min-width: 580px;
+}
+
+/* Sembunyikan elemen di mobile */
+.hide-mobile {
+  display: block;
+}
+
+/* Footer 4-col grid */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* =============================================
+   BREAKPOINT: TABLET (max 1024px)
+   ============================================= */
+@media (max-width: 1024px) {
+  .layout-2col,
+  .layout-2col-coverage {
+    gap: 40px;
+  }
+
+  .layout-2col-start {
+    gap: 40px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+/* =============================================
+   BREAKPOINT: MOBILE (max 768px)
+   ============================================= */
+@media (max-width: 768px) {
+  /* Container padding */
+  .container-fresh {
+    padding-inline: 16px;
+  }
+
+  /* Section padding — lebih compact di mobile */
+  section {
+    padding-block: 40px !important;
+  }
+
+  /* Hero khusus */
+  #hero-section {
+    padding-top: 80px !important;
+    padding-bottom: 40px !important;
+  }
+
+  /* Section title block — kurangi margin bawah */
+  .section-head {
+    margin-bottom: 28px !important;
+  }
+
+  /* === HIDE NON-ESSENTIAL ON MOBILE === */
+  .hero-preview    { display: none !important; }   /* Hero preview image */
+  .service-desc    { display: none !important; }   /* Service card description */
+  .service-tag     { display: none !important; }   /* Service tag pill */
+  .specialty-features { display: none !important; } /* Specialty feature list */
+
+  /* === 2-COL LAYOUT GRIDS === */
+  .layout-2col,
+  .layout-2col-start,
+  .layout-2col-coverage {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+  }
+
+  .layout-2col-sm {
+    grid-template-columns: 1fr !important;
+  }
+
+  .layout-2col-slots {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* === CARD GRIDS: jadi 2 kolom di mobile === */
+  .services-grid,
+  .specialty-grid,
+  .usp-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Compact card padding di mobile */
+  .services-grid > * {
+    padding: 16px !important;
+  }
+
+  .usp-grid > * {
+    padding: 16px !important;
+  }
+
+  /* Specialty image lebih kecil */
+  .specialty-img {
+    height: 120px !important;
+  }
+
+  .specialty-card-body {
+    padding: 14px !important;
+  }
+
+  /* === HOW IT WORKS: 2x2 grid === */
+  .hiw-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  .hiw-grid > * {
+    padding: 14px 10px !important;
+  }
+
+  .hiw-card {
+    padding: 14px !important;
+  }
+
+  /* === FOOTER === */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  /* Sembunyikan phone mockup */
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .mobile-app-content {
+    max-width: 100%;
+  }
+
+  /* Subscription cards */
+  .sub-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 400px;
+  }
+
+  /* Navbar CTA */
+  .navbar-cta {
+    font-size: 13px !important;
+    padding: 8px 14px !important;
+  }
+
+  /* Hero CTA buttons — stack */
+  .hero-ctas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-ctas a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Trust badges */
+  .trust-badge {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  /* Pricing table scroll */
+  .pricing-scroll > div {
+    min-width: 520px;
+  }
+
+  /* B2B content order */
+  .b2b-grid .b2b-text { order: 1; }
+  .b2b-grid .b2b-cards { order: 2; }
+}
+
+/* =============================================
+   BREAKPOINT: SMALL MOBILE (max 480px)
+   ============================================= */
+@media (max-width: 480px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .layout-2col-slots {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}

@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+import Hero from '../components/sections/Hero';
+import Services from '../components/sections/Services';
+import HowItWorks from '../components/sections/HowItWorks';
+import PricingAndWhy from '../components/sections/Pricing';
+import Specialty from '../components/sections/Specialty';
+import Subscription from '../components/sections/Subscription';
+import Coverage from '../components/sections/Coverage';
+import MobileApp from '../components/sections/MobileApp';
+import B2B from '../components/sections/B2B';
+import Testimonial from '../components/sections/Testimonial';
+import FAQ from '../components/sections/FAQ';
+import BookingCTA from '../components/sections/BookingCTA';
+---
+
+<Layout>
+  <Navbar />
+
+  <main>
+    <Hero client:load />
+    <Services client:visible />
+    <HowItWorks client:visible />
+    <PricingAndWhy client:visible />
+    <Specialty client:visible />
+    <Subscription client:visible />
+    <Coverage client:visible />
+    <MobileApp client:visible />
+    <B2B client:visible />
+    <Testimonial client:visible />
+    <FAQ client:visible />
+    <BookingCTA client:idle />
+  </main>
+
+  <Footer />
+</Layout>
